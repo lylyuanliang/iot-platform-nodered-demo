@@ -71,10 +71,10 @@ git clone git@github.com:lylyuanliang/iot-platform-nodered-demo.git
 cd iot-platform-nodered-demo
 ```
 
-如果是在当前本机目录继续操作，进入项目目录：
+如果已经 clone 过仓库，进入你本机实际保存的项目目录：
 
 ```powershell
-cd "D:\file_save\workspace\工作内容\ydcloudplus平台\物联感知\iot-platform-nodered-demo"
+cd iot-platform-nodered-demo
 ```
 
 安装 workspace 依赖：
@@ -203,7 +203,8 @@ MQTT Broker 使用 EMQX。compose 文件记录在：
 启动：
 
 ```powershell
-cd "D:\file_save\workspace\note_cloud\笔记\学习记录\docker\1.docker-compose文件样例\compose\emqx"
+git clone git@github.com:lylyuanliang/note_cloud.git
+cd "note_cloud\笔记\学习记录\docker\1.docker-compose文件样例\compose\emqx"
 docker compose up -d
 ```
 
