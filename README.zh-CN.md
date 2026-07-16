@@ -36,7 +36,14 @@ iot-platform-nodered-demo/
 
 ## 安装依赖
 
-进入项目目录：
+新电脑从 GitHub 克隆：
+
+```powershell
+git clone git@github.com:lylyuanliang/iot-platform-nodered-demo.git
+cd iot-platform-nodered-demo
+```
+
+如果是在当前本机目录继续操作，进入项目目录：
 
 ```powershell
 cd "D:\file_save\workspace\工作内容\ydcloudplus平台\物联感知\iot-platform-nodered-demo"
@@ -136,6 +143,24 @@ node-red/flows.json
 ```
 
 导入后点击 `Deploy`。
+
+仓库中已提交的 Node-RED flow 样例是：
+
+```text
+node-red/flows.json
+```
+
+新电脑 clone 后，按上面的命令启动 Node-RED 即可加载该 flow；如果页面没有自动显示，手动导入 `node-red/flows.json`。
+
+以下文件不会提交到 Git：
+
+```text
+node-red/flows_cred.json
+node-red/.config*.json
+node-red/*.backup
+```
+
+这些文件属于本地运行时状态、编辑器偏好或凭据密文。当前 demo 的 flow 不依赖真实账号密码；如果未来配置了 MQTT 账号、HTTP token、证书等凭据，需要在新环境中重新配置。
 
 ## MQTT / EMQX
 

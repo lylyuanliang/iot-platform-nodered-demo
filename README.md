@@ -6,7 +6,14 @@ This demo shows a small IoT sensing platform with a Node.js server, React web UI
 
 ## Install and run
 
-From this directory:
+Clone on a new machine:
+
+```powershell
+git clone git@github.com:lylyuanliang/iot-platform-nodered-demo.git
+cd iot-platform-nodered-demo
+```
+
+Then install and run:
 
 ```powershell
 pnpm install
@@ -51,6 +58,16 @@ pnpm exec node-red --userDir .
 ```
 
 Open `http://127.0.0.1:1880`, import `node-red/flows.json`, check the `Kafka broker` config node, and deploy. The HTTP callback nodes point to `http://127.0.0.1:3000`.
+
+The committed Node-RED flow sample is `node-red/flows.json`.
+
+These local runtime or credential files are intentionally not committed:
+
+- `node-red/flows_cred.json`
+- `node-red/.config*.json`
+- `node-red/*.backup`
+
+If credentials are added later, configure them again in the new local Node-RED environment.
 
 ## EMQX MQTT Broker
 
