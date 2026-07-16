@@ -1,5 +1,7 @@
 # 物联感知平台 Node-RED Demo
 
+语言：中文 | [English](README.en.md)
+
 这是一个用于技术分享和本地演示的物联感知平台 demo。它用 Node.js/Express 提供平台 API，用 React/Vite 提供 Web 页面，用 MySQL 持久化产品、设备、遥测、告警、规则日志和指令，用 Kafka 承载事件流，并用 Node-RED 展示规则编排与流程执行。
 
 本 demo 的重点不是做完整生产级平台，而是跑通一个可讲解的闭环：
