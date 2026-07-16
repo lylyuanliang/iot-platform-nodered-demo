@@ -15,6 +15,24 @@
   -> Web 页面查看告警、规则命中、指令和回执
 ```
 
+## 系统界面
+
+平台仪表盘：
+
+![平台仪表盘](docs/assets/screenshots/platform-dashboard.png)
+
+设备模拟端：
+
+![设备模拟端](docs/assets/screenshots/device-simulator.png)
+
+规则与 Node-RED：
+
+![规则与 Node-RED](docs/assets/screenshots/rules-nodered.png)
+
+业务告警处理：
+
+![业务告警处理](docs/assets/screenshots/business-alarms.png)
+
 ## 目录结构
 
 ```text
@@ -31,10 +49,18 @@ iot-platform-nodered-demo/
 
 1. Node.js 和 pnpm。
 2. Docker Desktop 或可用 Docker Engine。
-3. MySQL 容器，默认容器名 `mysql`，账号密码 `root/root`。
-4. Kafka 容器，默认容器名 `kafka-kraft`。
-5. Docker network `liurl_net`。
-6. MQTT 演示需要 EMQX，compose 文件记录在 note_cloud。
+3. MySQL 服务，用于存储产品、设备、遥测、告警、规则日志和指令。
+4. Kafka 服务，用于承载设备上报、规则事件、告警和指令消息。
+5. MQTT 演示需要额外准备 EMQX。
+
+本项目不强制要求固定容器名或 Docker network。只要服务地址、账号密码和项目配置一致即可。
+
+可参考 note_cloud 仓库中的 compose 样例：
+
+- [MySQL compose](https://github.com/lylyuanliang/note_cloud/tree/main/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/docker/1.docker-compose%E6%96%87%E4%BB%B6%E6%A0%B7%E4%BE%8B/compose/mysql)
+- [Kafka compose](https://github.com/lylyuanliang/note_cloud/tree/main/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/docker/1.docker-compose%E6%96%87%E4%BB%B6%E6%A0%B7%E4%BE%8B/compose/kafka)
+- [EMQX compose](https://github.com/lylyuanliang/note_cloud/tree/main/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/docker/1.docker-compose%E6%96%87%E4%BB%B6%E6%A0%B7%E4%BE%8B/compose/emqx)
+- [Node-RED compose](https://github.com/lylyuanliang/note_cloud/tree/main/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/docker/1.docker-compose%E6%96%87%E4%BB%B6%E6%A0%B7%E4%BE%8B/compose/node-red)
 
 ## 安装依赖
 
@@ -61,6 +87,8 @@ pnpm install
 
 推荐用下面的命令导入，显式指定 `utf8mb4`，避免中文 seed 乱码：
 
+下面命令假设 MySQL 容器名为 `mysql`、账号密码为 `root/root`；如果你的环境不同，替换为自己的连接方式即可。
+
 ```powershell
 Get-Content -Raw server\src\db\schema.sql | docker exec -i mysql mysql --default-character-set=utf8mb4 -uroot -proot
 Get-Content -Raw server\src\db\seed.sql | docker exec -i mysql mysql --default-character-set=utf8mb4 -uroot -proot
@@ -73,6 +101,8 @@ docker exec mysql mysql --default-character-set=utf8mb4 -uroot -proot -D iot_nod
 ```
 
 ## 创建 Kafka Topic
+
+下面命令假设 Kafka 容器名为 `kafka-kraft`，容器内 Kafka 命令路径为 `/opt/kafka/bin/kafka-topics.sh`；如果你的 Kafka 部署方式不同，使用等价的 topic 创建命令即可。
 
 ```powershell
 $topics = @(
@@ -168,9 +198,7 @@ node-red/*.backup
 
 MQTT Broker 使用 EMQX。compose 文件记录在：
 
-```text
-D:\file_save\workspace\note_cloud\笔记\学习记录\docker\1.docker-compose文件样例\compose\emqx\docker-compose.yml
-```
+[EMQX compose](https://github.com/lylyuanliang/note_cloud/blob/main/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/docker/1.docker-compose%E6%96%87%E4%BB%B6%E6%A0%B7%E4%BE%8B/compose/emqx/docker-compose.yml)
 
 启动：
 
