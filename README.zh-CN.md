@@ -29,6 +29,10 @@
 
 ![规则与 Node-RED](docs/assets/screenshots/rules-nodered.png)
 
+Node-RED 流程编排：
+
+![Node-RED 流程编排](docs/assets/screenshots/nodered-flow.png)
+
 业务告警处理：
 
 ![业务告警处理](docs/assets/screenshots/business-alarms.png)
