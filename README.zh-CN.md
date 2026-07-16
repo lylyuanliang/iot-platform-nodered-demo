@@ -260,11 +260,7 @@ Dashboard: http://127.0.0.1:18083
 
 说明：业务告警处理页面的“确认 / 停机处理 / 播放语音”属于业务模拟端动作，不直接触发 Node-RED flow。它通过 demo-server API 更新告警或创建设备指令；Node-RED 主要负责设备上报后的解析、规则判断、告警生成和自动联动指令。
 
-更详细的操作手册见：
-
-```text
-docs/当前Demo使用教程.md
-```
+更详细的操作手册见：[当前 Demo 使用教程](docs/当前Demo使用教程.md)。
 
 ## Node-RED Flow
 
@@ -309,7 +305,7 @@ Invoke-RestMethod http://127.0.0.1:3000/api/products | ConvertTo-Json -Depth 6
 
 ## 更多文档
 
-- 当前 Demo 使用教程：`docs/当前Demo使用教程.md`
-- Node-RED 详细说明：`docs/Node-RED详细说明.md`
-- 技术分享提纲：`docs/技术分享提纲.md`
-- Node-RED 运行说明：`node-red/README.md`
+- [当前 Demo 使用教程](docs/当前Demo使用教程.md)
+- [Node-RED 详细说明](docs/Node-RED详细说明.md)
+- [技术分享提纲](docs/技术分享提纲.md)
+- [Node-RED 运行说明](node-red/README.md)
