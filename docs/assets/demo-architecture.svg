@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
+  <title id="title">物联感知平台 Node-RED Demo 架构图</title>
+  <desc id="desc">展示设备模拟端、物联网平台端、业务模拟端，以及 Kafka、Node-RED、MySQL、MQTT、HTTP 回调之间的关系。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#31454d"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#168c75"/>
+    </marker>
+    <style>
+      .bg { fill: #eef2ef; }
+      .title { font: 700 28px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #15252c; }
+      .subtitle { font: 14px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #596c72; }
+      .lane { fill: #f8faf8; stroke: #c9d6d1; stroke-width: 2; rx: 10; }
+      .lane-title { font: 700 18px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #20333a; }
+      .box { fill: #ffffff; stroke: #b7c9c3; stroke-width: 1.5; rx: 8; }
+      .box-core { fill: #e8f6f2; stroke: #1f9d83; stroke-width: 2; rx: 8; }
+      .box-dark { fill: #1b2c34; stroke: #1b2c34; rx: 8; }
+      .box-text { font: 700 15px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #1e3037; }
+      .box-sub { font: 12px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #5d7076; }
+      .dark-text { font: 700 15px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #ffffff; }
+      .dark-sub { font: 12px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #c8d8d4; }
+      .note { fill: #fff8df; stroke: #d7b451; stroke-width: 1.5; rx: 8; }
+      .note-text { font: 13px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #5d4a0b; }
+      .line { fill: none; stroke: #31454d; stroke-width: 2; marker-end: url(#arrow); }
+      .line-green { fill: none; stroke: #168c75; stroke-width: 2.5; marker-end: url(#arrow-green); }
+      .line-dashed { fill: none; stroke: #6b7d83; stroke-width: 2; stroke-dasharray: 7 5; marker-end: url(#arrow); }
+      .label { font: 12px "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #31454d; }
+      .badge { fill: #1f9d83; rx: 4; }
+      .badge-text { font: 700 11px Arial, sans-serif; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="820"/>
+  <text class="title" x="48" y="50">物联感知平台 Node-RED Demo 架构图</text>
+  <text class="subtitle" x="48" y="76">工程上是一个 demo，逻辑上分为设备模拟端、物联网平台端、业务模拟端；Node-RED 位于平台内部，负责规则编排与流程执行。</text>
+
+  <rect class="lane" x="40" y="115" width="250" height="605"/>
+  <text class="lane-title" x="64" y="148">设备模拟端</text>
+
+  <rect class="box" x="64" y="178" width="200" height="82"/>
+  <text class="box-text" x="84" y="208">设备模拟器页面</text>
+  <text class="box-sub" x="84" y="232">TEMP-SENSOR-001</text>
+  <text class="box-sub" x="84" y="250">上报 temp / hum / online</text>
+
+  <rect class="box" x="64" y="300" width="200" height="82"/>
+  <text class="box-text" x="84" y="330">执行设备模拟</text>
+  <text class="box-sub" x="84" y="354">ALARM-LIGHT-001</text>
+  <text class="box-sub" x="84" y="372">CNC / VOICE-SPEAKER</text>
+
+  <rect class="box" x="64" y="422" width="200" height="82"/>
+  <text class="box-text" x="84" y="452">设备回执</text>
+  <text class="box-sub" x="84" y="476">轮询待执行指令</text>
+  <text class="box-sub" x="84" y="494">提交 success / failed</text>
+
+  <rect class="lane" x="330" y="115" width="610" height="605"/>
+  <text class="lane-title" x="354" y="148">物联网平台模拟端</text>
+
+  <rect class="box" x="360" y="178" width="190" height="82"/>
+  <text class="box-text" x="382" y="208">demo-server API</text>
+  <text class="box-sub" x="382" y="232">设备上报 / 查询</text>
+  <text class="box-sub" x="382" y="250">业务处理 / 平台回调</text>
+
+  <rect class="box-dark" x="600" y="178" width="185" height="82"/>
+  <text class="dark-text" x="622" y="208">Kafka</text>
+  <text class="dark-sub" x="622" y="232">iot.telemetry.raw</text>
+  <text class="dark-sub" x="622" y="250">alarm / command topics</text>
+
+  <rect class="box-core" x="570" y="318" width="250" height="150"/>
+  <text class="box-text" x="596" y="350">Node-RED 规则编排</text>
+  <text class="box-sub" x="596" y="376">Kafka Consumer / Producer</text>
+  <text class="box-sub" x="596" y="398">Function: 标准化、阈值规则</text>
+  <text class="box-sub" x="596" y="420">HTTP Request: 回调平台 API</text>
+  <text class="box-sub" x="596" y="442">Catch: 错误捕获</text>
+
+  <rect class="box" x="360" y="525" width="190" height="82"/>
+  <text class="box-text" x="382" y="555">MySQL</text>
+  <text class="box-sub" x="382" y="579">产品 / 物模型 / 设备</text>
+  <text class="box-sub" x="382" y="597">遥测 / 告警 / 指令</text>
+
+  <rect class="box" x="600" y="525" width="185" height="82"/>
+  <text class="box-text" x="622" y="555">平台 Web 页面</text>
+  <text class="box-sub" x="622" y="579">查询平台状态</text>
+  <text class="box-sub" x="622" y="597">观察闭环结果</text>
+
+  <rect class="box" x="815" y="525" width="95" height="82"/>
+  <text class="box-text" x="838" y="555">EMQX</text>
+  <text class="box-sub" x="832" y="579">MQTT</text>
+  <text class="box-sub" x="832" y="597">1883</text>
+
+  <rect class="lane" x="980" y="115" width="250" height="605"/>
+  <text class="lane-title" x="1004" y="148">业务模拟端</text>
+
+  <rect class="box" x="1004" y="178" width="200" height="92"/>
+  <text class="box-text" x="1024" y="208">业务告警处理页面</text>
+  <text class="box-sub" x="1024" y="232">查看 HIGH_TEMPERATURE</text>
+  <text class="box-sub" x="1024" y="250">确认 / 停机 / 播放语音</text>
+
+  <rect class="box" x="1004" y="320" width="200" height="92"/>
+  <text class="box-text" x="1024" y="350">业务系统动作</text>
+  <text class="box-sub" x="1024" y="374">stopMachine -> CNC</text>
+  <text class="box-sub" x="1024" y="392">playVoice -> 音柱</text>
+
+  <rect class="note" x="984" y="548" width="220" height="104"/>
+  <text class="note-text" x="1004" y="578">真实环境可替换为 Java 后端：</text>
+  <text class="note-text" x="1004" y="602">Node-RED 通过 HTTP / MQ</text>
+  <text class="note-text" x="1004" y="626">调用 Java 服务落库、发指令、</text>
+  <text class="note-text" x="1004" y="650">推送业务事件。</text>
+
+  <path class="line-green" d="M 264 216 C 305 216 316 216 360 216"/>
+  <text class="label" x="292" y="204">HTTP 上报</text>
+
+  <path class="line" d="M 550 216 C 570 216 580 216 600 216"/>
+  <text class="label" x="558" y="204">写 raw</text>
+
+  <path class="line-green" d="M 692 260 L 692 318"/>
+  <text class="label" x="704" y="294">消费 raw</text>
+
+  <path class="line-green" d="M 692 468 L 692 525"/>
+  <text class="label" x="706" y="505">规则结果</text>
+
+  <path class="line" d="M 570 408 C 510 408 455 455 455 525"/>
+  <text class="label" x="432" y="455">HTTP 回调落库</text>
+
+  <path class="line" d="M 550 566 L 600 566"/>
+  <text class="label" x="557" y="552">查询</text>
+
+  <path class="line" d="M 785 566 L 1004 224"/>
+  <text class="label" x="855" y="412">Web 展示告警</text>
+
+  <path class="line-green" d="M 1004 366 C 900 366 900 566 785 566"/>
+  <text class="label" x="846" y="350">业务处理 API</text>
+
+  <path class="line" d="M 360 342 C 315 342 304 342 264 342"/>
+  <text class="label" x="282" y="330">设备轮询指令</text>
+
+  <path class="line" d="M 264 462 C 310 462 316 462 360 240"/>
+  <text class="label" x="282" y="438">提交回执</text>
+
+  <path class="line-dashed" d="M 264 188 C 380 110 760 120 835 525"/>
+  <text class="label" x="412" y="122">MQTT 上报 devices/+/property/report</text>
+
+  <path class="line-dashed" d="M 862 525 C 862 430 825 388 820 382"/>
+  <text class="label" x="872" y="455">MQTT In</text>
+
+  <path class="line-green" d="M 820 382 C 860 310 835 230 785 216"/>
+  <text class="label" x="832" y="304">写 iot.telemetry.raw</text>
+
+  <rect class="badge" x="570" y="302" width="82" height="22"/>
+  <text class="badge-text" x="582" y="317">核心产出</text>
+  <text class="subtitle" x="48" y="768">说明：当前 demo 为便于演示，把三端页面合在一个 Web 内；真实环境可将业务系统、平台服务、设备接入服务拆分部署。</text>
+</svg>

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.local
+.idea/
+.vscode/
+*.log
+node-red/.config*.json
+node-red/*.backup
+node-red/flows_cred.json

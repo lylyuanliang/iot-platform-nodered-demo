@@ -1,0 +1,20 @@
+{
+  "name": "demo-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "test": "node --test test/**/*.test.js",
+    "db:schema": "mysql --default-character-set=utf8mb4 -h 127.0.0.1 -P 3306 -u root -p < src/db/schema.sql",
+    "db:seed": "mysql --default-character-set=utf8mb4 -h 127.0.0.1 -P 3306 -u root -p iot_nodered_demo < src/db/seed.sql"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "kafkajs": "^2.2.4",
+    "mysql2": "^3.11.0",
+    "supertest": "^7.1.3"
+  }
+}

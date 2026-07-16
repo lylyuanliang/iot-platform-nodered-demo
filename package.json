@@ -1,0 +1,12 @@
+{
+  "name": "iot-platform-nodered-demo",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --filter demo-server --filter demo-web dev",
+    "server:dev": "pnpm --filter demo-server dev",
+    "web:dev": "pnpm --filter demo-web dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

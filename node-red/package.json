@@ -1,0 +1,8 @@
+{
+  "name": "iot-platform-node-red-flows",
+  "private": true,
+  "dependencies": {
+    "node-red": "^5.0.1",
+    "node-red-contrib-kafkajs": "^0.0.7"
+  }
+}
